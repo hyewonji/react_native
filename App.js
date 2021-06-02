@@ -21,7 +21,19 @@ class App extends Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="User">
+        <Stack.Navigator 
+          initialRouteName="User"
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: '#a451e'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              color : '#f3d612'
+            }
+          }}
+        >
           <Stack.Screen 
             name="Home" 
             component={HomeScreen}
@@ -35,17 +47,17 @@ class App extends Component {
               userName: 'Gildong',
               userLastName: 'Go'
             }}
-            // options={{
-            //   title: 'User Screen',
-            //   headerStyle: {
-            //     backgroundColor: 'pink'
-            //   },
-            //   headerTintColor: 'red',
-            //   headerTitleStyle: {
-            //     fontWeight: 'bold',
-            //     color : 'purple'
-            //   }
-            // }}
+            options={{
+              title: 'User Screen',
+              headerStyle: {
+                backgroundColor: 'pink'
+              },
+              headerTintColor: 'red',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                color : 'purple'
+              }
+            }}
             />
         </Stack.Navigator>
       </NavigationContainer>
