@@ -24,12 +24,11 @@ class DrawerHomeScreen extends Component {
           title="To User Screen"
           onPress={() => {
             this.props.navigation.navigate('User');
-          }}></Button>
+          }}
+        />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({});
 
 export default DrawerHomeScreen;
