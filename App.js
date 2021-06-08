@@ -21,7 +21,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-import HomeScreen from './src/home';
+import StackHomeScreen from './src/home';
 import UserScreen from './scr/user';
 import LogoTitle from './src/logo';
 import DrawerHomeScreen from './src/home_drawer';
@@ -35,6 +35,40 @@ import SideDrawer from './src/my_drawer';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
+
+/*
+  Stack Navigator
+  - Tab Navigator
+    - Tab Screen D
+    - Tab Screen E
+    - Tab Screen F
+  - Stack Screen B
+  - Stack Screen C
+*/
+
+MainScreen = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      tabBarOptions={{
+        activeBackgroundColor: 'skyblue',
+        activeTintColor: 'blue',
+        inactiveTintColor: '#fff',
+        style: {
+          backgroundColor: '#c6cbef',
+        },
+        labelPosition: 'beside-icon',
+      }}
+      screenOptions={({route}) => ({
+        tabBarLabel: route.name,
+        tabBarIcon: ({focused}) => TabBarIcon(focused, route.name),
+      })}>
+      <Tab.Screen name="Home" component={TabHomeScreen} />
+      <Tab.Screen name="User" component={TabUserScreen} />
+      <Tab.Screen name="Message" component={TabMessageScreen} />
+    </Tab.Navigator>
+  );
+};
 
 const TabBarIcon = (focused, name) => {
   var iconImagePath;
@@ -77,25 +111,10 @@ class App extends Component {
   render() {
     return (
       <NavigationContainer>
-        <Tab.Navigator
-          initialRouteName="Home"
-          tabBarOptions={{
-            activeBackgroundColor: 'skyblue',
-            activeTintColor: 'blue',
-            inactiveTintColor: '#fff',
-            style: {
-              backgroundColor: '#c6cbef',
-            },
-            labelPosition: 'beside-icon',
-          }}
-          screenOptions={({route}) => ({
-            tabBarLabel: route.name,
-            tabBarIcon: ({focused}) => TabBarIcon(focused, route.name),
-          })}>
-          <Tab.Screen name="Home" component={TabHomeScreen} />
-          <Tab.Screen name="User" component={TabUserScreen} />
-          <Tab.Screen name="Message" component={TabUserScreen} />
-        </Tab.Navigator>
+        <Stack.Navigator>
+          <Stack.Screen name="Main" component={MainScreen} />
+          <Stack.Screen name="Home_Stack" component={StackHomeScreen} />
+        </Stack.Navigator>
       </NavigationContainer>
 
       // <NavigationContainer>
